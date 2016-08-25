@@ -33,5 +33,8 @@ for user in users:
             print(status[1].screen_name + " is not following you.")
 
         if(status[0].following == False):
-            api.create_friendship(screen_name = status[1].screen_name, follow = config["appear_in_my_feed"])
-            print("Following: " + status[1].screen_name)
+            try:
+                api.create_friendship(screen_name = status[1].screen_name, follow = config["appear_in_my_feed"])
+                print("Following: " + status[1].screen_name)
+            except tweepy.TweepError as e:
+                print(e)
